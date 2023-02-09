@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'practice-your-numbers';
+export class AppComponent implements OnInit {
+  aleatoryNumber$ = this.appService.aleatoryNumber$;
+  isLoading$ = this.appService.isLoading$;
+
+  constructor(private appService: AppService) {}
+
+  ngOnInit(): void {
+    this.appService.refreshNumber();
+  }
+
+  refreshNumber() {
+    this.appService.refreshNumber();
+  }
 }

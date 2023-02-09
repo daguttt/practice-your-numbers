@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+header:has(.logo) {
+  padding-block: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 2.5rem;
+}
+
+.logo + h1 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
+@media screen and (max-width: 576px) {
+  .logo + h1 {
+    font-size: 24px;
+  }
+}
+
+article:has(span) {
+  text-align: center;
+}
+
+article > span {
+  font-size: 4rem;
+}
+
+article:is([aria-busy="true"]) > span {
+  display: inline-block;
+  height: 0;
+}
