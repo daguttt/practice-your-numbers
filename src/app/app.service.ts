@@ -24,7 +24,7 @@ export class AppService {
   refreshNumber() {
     this.markAsLoading();
     this.aleatoryNumber.next(null);
-    this.getAleatoryNumber()
+    this.generateAletoryNumber()
       .pipe(
         tap((aleatoryNumber) => this.aleatoryNumber.next(aleatoryNumber)),
         finalize(() => this.clearLoading())
@@ -40,7 +40,12 @@ export class AppService {
     this.isLoading.next(false);
   }
 
-  private getAleatoryNumber(): Observable<number> {
-    return of(Math.floor(Math.random() * 1_000_000)).pipe(delay(1000));
+  private generateAletoryNumber(): Observable<number> {
+    return of(
+      Math.floor(
+        Math.random() *
+          Math.floor(Math.random() * Math.floor(Math.random() * 1_000_000))
+      )
+    ).pipe(delay(1000));
   }
 }
