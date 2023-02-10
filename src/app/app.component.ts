@@ -6,7 +6,7 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  aleatoryNumber$ = this.appService.aleatoryNumber$;
+  randomNum$ = this.appService.randomNum$;
   isLoading$ = this.appService.isLoading$;
 
   constructor(private appService: AppService) {}

@@ -9,7 +9,7 @@
 <main>
   <div class="container">
     <article [attr.aria-busy]="isLoading$ | async">
-      <span>{{ aleatoryNumber$ | async | number }}</span>
+      <span>{{ randomNum$ | async | number }}</span>
     </article>
     <button
       (click)="refreshNumber()"

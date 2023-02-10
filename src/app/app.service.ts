@@ -5,19 +5,19 @@ import { BehaviorSubject, Observable, delay, map, of, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AppService {
-  private aleatoryNumber = new BehaviorSubject<number | null>(null);
-  aleatoryNumber$ = this.aleatoryNumber.asObservable();
+  private randomNum = new BehaviorSubject<number | null>(null);
+  randomNum$ = this.randomNum.asObservable();
 
-  isLoading$: Observable<boolean> = this.aleatoryNumber$.pipe(
+  isLoading$: Observable<boolean> = this.randomNum$.pipe(
     map((number) => number === null)
   );
 
   constructor() {}
 
   refreshNumber() {
-    this.aleatoryNumber.next(null);
+    this.randomNum.next(null);
     this.generateAletoryNumber()
-      .pipe(tap((aleatoryNumber) => this.aleatoryNumber.next(aleatoryNumber)))
+      .pipe(tap((num) => this.randomNum.next(num)))
       .subscribe();
   }
 
