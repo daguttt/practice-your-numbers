@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.appService.refreshNumber();
+    this.refreshNumber();
   }
 
   refreshNumber() {
