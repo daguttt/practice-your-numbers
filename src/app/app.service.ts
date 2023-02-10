@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
-  Subject,
   delay,
   finalize,
+  map,
   of,
   tap,
 } from 'rxjs';
@@ -13,31 +13,20 @@ import {
   providedIn: 'root',
 })
 export class AppService {
-  private aleatoryNumber = new Subject<number | null>();
+  private aleatoryNumber = new BehaviorSubject<number | null>(null);
   aleatoryNumber$ = this.aleatoryNumber.asObservable();
 
-  private isLoading = new BehaviorSubject<boolean>(true);
-  isLoading$ = this.isLoading.asObservable();
+  isLoading$: Observable<boolean> = this.aleatoryNumber$.pipe(
+    map((number) => number === null)
+  );
 
   constructor() {}
 
   refreshNumber() {
-    this.markAsLoading();
     this.aleatoryNumber.next(null);
     this.generateAletoryNumber()
-      .pipe(
-        tap((aleatoryNumber) => this.aleatoryNumber.next(aleatoryNumber)),
-        finalize(() => this.clearLoading())
-      )
+      .pipe(tap((aleatoryNumber) => this.aleatoryNumber.next(aleatoryNumber)))
       .subscribe();
-  }
-
-  markAsLoading() {
-    this.isLoading.next(true);
-  }
-
-  clearLoading() {
-    this.isLoading.next(false);
   }
 
   private generateAletoryNumber(): Observable<number> {
