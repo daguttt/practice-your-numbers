@@ -22,7 +22,7 @@ export class AppService {
   }
 
   private generateAletoryNumber(): Observable<number> {
-    return of(this.getRandomNumber(1, this.getRandomNumber(1, 1_000_000))).pipe(
+    return of(this.getRandomNumber(1, this.getRandomNumber(1, 100_000))).pipe(
       delay(1000)
     );
   }
